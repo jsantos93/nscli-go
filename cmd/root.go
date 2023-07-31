@@ -4,7 +4,6 @@ Copyright © 2023 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -14,14 +13,12 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "nscli-go",
 	Short: "A nonsense CLI written in Golang",
-	Long: `This is a nonsense CLI written in Golang for learning purpose
-	For example:
-`,
+	Long:  `This is a nonsense CLI written in Golang for learning purpose`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Hello World")
-	},
+	// Run: func(cmd *cobra.Command, args []string) {
+	// 	fmt.Println("Hello World")
+	// },
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
