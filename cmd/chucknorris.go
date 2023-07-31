@@ -6,11 +6,15 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 
 	"github.com/spf13/cobra"
 )
+
+type ChuckNorris struct {
+	Joke string `json:"value"`
+}
 
 // chucknorrisCmd represents the chucknorris command
 var chucknorrisCmd = &cobra.Command{
@@ -30,20 +34,22 @@ var chucknorrisCmd = &cobra.Command{
 
 		if err != nil {
 			fmt.Println(err)
+			return
 		}
 		defer response.Body.Close()
 
 		if response.StatusCode == 200 {
-			byte_body, err := ioutil.ReadAll(response.Body)
+			byte_body, err := io.ReadAll(response.Body)
 
 			if err != nil {
 				fmt.Println(err)
+				return
 			}
 
-			var body map[string]any
-			json.Unmarshal([]byte(byte_body), &body)
+			var chucknorris ChuckNorris
+			json.Unmarshal([]byte(byte_body), &chucknorris)
 
-			fmt.Println(body["value"])
+			fmt.Println(chucknorris.Joke)
 		}
 
 	},
